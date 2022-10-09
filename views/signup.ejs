@@ -1,0 +1,169 @@
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>reg_form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+<style>
+    .reg_page{
+    padding-top:100px;
+    padding-bottom:50px;
+    } 
+
+</style>
+ <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+       <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-sixteen.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+
+
+
+</head>
+<body>
+
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+
+
+
+ <!-- Header -->
+    <header class="">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="/signup"><h2>Registration <em>Form</em></h2></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="/signup">Sign Up</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+<!--Header ends here-->
+
+<!--from start here -->
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+          <div class="reg_page">
+            <!-- msgs on Page -->
+            <!-- password length error -->
+            <% if (typeof errors != 'undefined') { %>
+              <% errors.forEach(function(err){ %>
+                <div class="alert alert-danger" role="alert">
+                  <%= err.msg %>
+                </div>
+              <%})%>
+            <%}%>
+            
+            <!-- password match error -->
+            <% if (typeof password_error != 'undefined') { %>
+              <div class="alert alert-danger" role="alert">
+              <%= password_error %>
+              </div>
+            <%}%>
+            
+            <% if (typeof registered != 'undefined') { %>
+              <div class="alert alert-info" role="alert">
+              <%= registered %>
+            </div>
+            <%}%>
+            <% if (typeof email_error != 'undefined') { %>
+              <div class="alert alert-danger" role="alert">
+              <%= email_error %>
+            </div>
+            <%}%>
+         <!-- end of msgs on Page -->
+         <form action="/signup" method="POST">
+        <div class="mb-3">
+          <label for="full_name" class="form-label"><h5>Full Name</h5></label>
+          <input type="text" name="full_name" placeholder="Full Name" required class="form-control" id="first_name" aria-describedby="emailHelp" >
+          <small id="emailHelp" class="form-text text-muted">Full Name length must not exceed from 20.</small>
+        </div>
+
+        <div class="mb-3">
+          <label for="user_name" class="form-label"><h5>User Name</h5></label>
+          <input type="text" name="user_name" placeholder="User Name" required class="form-control" id="last_name">
+          <small id="emailHelp" class="form-text text-muted">User Name length must not exceed from 20.</small>
+        </div>
+
+         <div class="mb-3">
+          <label for="email" class="form-label"><h5>Email Address</h5></label>
+          <input type="email" name="email" placeholder="Email" required class="form-control" id="email">
+          <small id="emailHelp" class="form-text text-muted">Password length must be greater then 8.</small> 
+        </div>
+        <input type="hidden", name='_csrf' , value = <%= token %> >
+         <div class="mb-3">
+          <label for="password1" class="form-label"><h5>Password</h5></label>
+          <input type="password" name="password1" placeholder="Password" required class="form-control" id="password1">
+         <small id="emailHelp" class="form-text text-muted">Password length must be greater then 8.</small>
+         </div>
+
+         <div class="mb-3">
+
+          <label for="password2" class="form-label"><h5>Password(Again)</h5></label>
+          <input type="password" name="password2" placeholder="Confirm Password" required class="form-control" id="password2">
+          
+
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button><br>
+        </div>
+      </form>
+        
+        </div>
+
+      </div>
+            
+  
+        
+</div>
+<!--    from end here-->
+
+   <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- Additional Scripts -->
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/owl.js"></script>
+    <script src="assets/js/slick.js"></script>
+    <script src="assets/js/isotope.js"></script>
+    <script src="assets/js/accordions.js"></script>
+
+
+ <script language = 'text/Javascript'>
+      cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+      function clearField(t){                   //declaring the array outside of the
+      if(! cleared[t.id]){                      // function makes it static and global
+          cleared[t.id] = 1;  // you could use true and false, but that's more typing
+          t.value='';         // with more chance of typos
+          t.style.color='#fff';
+          }
+      }
+    </script>
+</body>
+</html>
